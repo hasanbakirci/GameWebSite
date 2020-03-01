@@ -1,0 +1,44 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/layout.css' %}" >
+    <link rel="stylesheet" href="{% static 'css/index.css' %}" >
+    
+    
+
+    
+
+
+    
+
+
+    <div id= "kutu"class="topnav">
+        <a  href="index">Anasayfa</a>
+        <a  href="game1">Oyunlar</a>
+        <a href="ranking">Sıralama</a>
+        <a href="register">Kayıt ol</a>
+    </div>
+
+</head>
+<body>
+    
+            {% block content %}
+
+
+
+            {% endblock %}
+
+
+
+</body>
+
+        <div id= "kutu"class="bottomnav">
+    
+        </div>
+</html>

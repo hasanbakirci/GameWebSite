@@ -1,0 +1,78 @@
+
+
+.alan{
+    background-image: url("{% static 'img/background.jpg' %}");
+    height: 720px;
+    width: 1080px;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    
+    
+    
+}
+
+.solalan{
+    background-color: white;
+    height: 720px;
+    width: 830px;
+    position: absolute;
+    margin-left: 0;
+    
+    
+    
+    
+}
+.slideralan{
+    background-color: lime;
+    height: 470px;
+    width: 830px;
+    position: absolute;
+}
+.duyurualan{
+    background-color: khaki;
+    height: 240px;
+    width: 830px;
+    margin-top: 480px;
+    position: absolute;
+}
+.sagalan{
+    background-color: rgb(145, 194, 88);
+    height:720px;
+    width: 240px;
+    position: absolute;
+    margin-left: 840px;   
+    
+}
+.loginalan{
+    
+    height: 250px;
+    width: 200px;
+    position: absolute;
+    margin: auto;
+    margin-left: 20px;
+    margin-top: 20px;
+
+}
+.siralamaalan{
+    height: 300px;
+    width: 200px;
+    position: absolute;
+    margin: auto;
+    margin-top: 20px;
+}
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+  

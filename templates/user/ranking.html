@@ -1,0 +1,118 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+
+
+
+
+
+
+
+
+<style>
+    form{
+        height: auto;
+        width: 1080px;
+        margin: auto;
+    }
+    table, td, th {  
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+    
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    th, td {
+      padding: 10px;
+    }
+    h2{
+        margin: auto;
+    }
+    form {
+        
+        border: 3px solid #f1f1f1;
+      }
+    
+    select,input,button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 30%;
+        margin-left: 10px;
+        
+      }
+    
+    </style>
+    
+    
+    
+    <form>
+
+        
+
+
+   
+        <select class="secim">
+            <option>    Oyun 1</option>
+            <option>    Oyun 2</option>
+            <option>    Oyun 3</option>
+        </select>
+        <input type="text" placeholder="Kullanıcı adı" name="uname" required>
+        <button type="submit">Ara</button>
+    
+    <table>
+      <tr>
+        <th>Username</th>
+        <th>Point</th>
+        
+      </tr>
+      <tr>
+        <td>1) Peter</td>
+        <td>10</td>
+        
+      </tr>
+      <tr>
+        <td>2) Lois</td>
+        <td>10</td>
+      </tr>
+      <tr>
+        <td>3)Joe</td>
+        <td>10</td>
+      </tr>
+      <tr>
+        <td>4) Cleveland</td>
+        <td>10</td>
+      </tr>
+      <tr>
+        <td>5) Cleveland</td>
+        <td>10</td>
+      </tr>
+      <tr>
+        <td>6) Cleveland</td>
+        <td>10</td>
+      </tr>
+      <tr>
+        <td>7) Cleveland</td>
+        <td>10</td>
+      </tr>
+      <tr>
+        <td>8) Cleveland</td>
+        <td>10</td>
+      </tr>
+      
+
+    </table>
+
+
+
+
+ </form>
+
+
+{% endblock %}
