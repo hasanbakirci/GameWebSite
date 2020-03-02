@@ -43,157 +43,163 @@
 <div id="genelalan">
 
   <div id="oyunalan">
-    <canvas width="400" height="400" id="game"></canvas>
-    <script>
-      var canvas = document.getElementById('game');
-      var context = canvas.getContext('2d');
+    <canvas id="game" width="400" height="400"></canvas>
 
-      var grid = 16;
-      var count = 0;
-
-      var snake = {
-        x: 160,
-        y: 160,
-
-        // snake velocity. moves one grid length every frame in either the x or y direction
-        dx: grid,
-        dy: 0,
-
-        // keep track of all grids the snake body occupies
-        cells: [],
-
-        // length of the snake. grows when eating an apple
-        maxCells: 4
-      };
-      var apple = {
-        x: 320,
-        y: 320
-      };
-
-      // get random whole numbers in a specific range
-      // @see https://stackoverflow.com/a/1527820/2124254
-      function getRandomInt(min, max) {
-        return Math.floor(Math.random() * (max - min)) + min;
-      }
-
-      // game loop
-      function loop() {
-        requestAnimationFrame(loop);
-
-        // slow game loop to 15 fps instead of 60 (60/15 = 4)
-        if (++count < 4) {
-          return;
-        }
-
-        count = 0;
-        context.clearRect(0, 0, canvas.width, canvas.height);
-
-        // move snake by it's velocity
-        snake.x += snake.dx;
-        snake.y += snake.dy;
-
-        // wrap snake position horizontally on edge of screen
-        if (snake.x < 0) {
-          snake.x = canvas.width - grid;
-        }
-        else if (snake.x >= canvas.width) {
-          snake.x = 0;
-        }
-
-        // wrap snake position vertically on edge of screen
-        if (snake.y < 0) {
-          snake.y = canvas.height - grid;
-        }
-        else if (snake.y >= canvas.height) {
-          snake.y = 0;
-        }
-
-        // keep track of where snake has been. front of the array is always the head
-        snake.cells.unshift({ x: snake.x, y: snake.y });
-
-        // remove cells as we move away from them
-        if (snake.cells.length > snake.maxCells) {
-          snake.cells.pop();
-        }
-
-        // draw apple
-        context.fillStyle = 'red';
-        context.fillRect(apple.x, apple.y, grid - 1, grid - 1);
-
-        // draw snake one cell at a time
-        context.fillStyle = 'green';
-        snake.cells.forEach(function (cell, index) {
-
-          // drawing 1 px smaller than the grid creates a grid effect in the snake body so you can see how long it is
-          context.fillRect(cell.x, cell.y, grid - 1, grid - 1);
-
-          // snake ate apple
-          if (cell.x === apple.x && cell.y === apple.y) {
-            snake.maxCells++;
-
-            // canvas is 400x400 which is 25x25 grids 
-            apple.x = getRandomInt(0, 25) * grid;
-            apple.y = getRandomInt(0, 25) * grid;
-          }
-
-          // check collision with all cells after this one (modified bubble sort)
-          for (var i = index + 1; i < snake.cells.length; i++) {
-
-            // snake occupies same space as a body part. reset game
-            if (cell.x === snake.cells[i].x && cell.y === snake.cells[i].y) {
-              snake.x = 160;
-              snake.y = 160;
-              snake.cells = [];
-              snake.maxCells = 4;
-              snake.dx = grid;
-              snake.dy = 0;
-
-              apple.x = getRandomInt(0, 25) * grid;
-              apple.y = getRandomInt(0, 25) * grid;
-            }
-          }
-        });
-      }
-
-      // listen to keyboard events to move the snake
-      document.addEventListener('keydown', function (e) {
-        // prevent snake from backtracking on itself by checking that it's 
-        // not already moving on the same axis (pressing left while moving
-        // left won't do anything, and pressing right while moving left
-        // shouldn't let you collide with your own body)
-
-        // left arrow key
-        if (e.which === 37 && snake.dx === 0) {
-          snake.dx = -grid;
-          snake.dy = 0;
-        }
-        // up arrow key
-        else if (e.which === 38 && snake.dy === 0) {
-          snake.dy = -grid;
-          snake.dx = 0;
-        }
-        // right arrow key
-        else if (e.which === 39 && snake.dx === 0) {
-          snake.dx = grid;
-          snake.dy = 0;
-        }
-        // down arrow key
-        else if (e.which === 40 && snake.dy === 0) {
-          snake.dy = grid;
-          snake.dx = 0;
-        }
-      });
-
-      // start the game
-      requestAnimationFrame(loop);
-    </script>
-
-
+<script>
+class SnakeGame {
+  constructor() {
+    this.canvas = document.getElementById('game');
+    this.context = this.canvas.getContext('2d');
     
+    // Basılan tuşları algılıyoruz:
+    document.addEventListener('keydown', this.onKeyPress.bind(this));
+  }
+
+  init() {
+    // Yeni oyun için ilk değer atamaları:
+    this.positionX = this.positionY = 10;
+    this.appleX = this.appleY = 5;
+    this.tailSize = 5;
+    this.trail = [];
+    this.gridSize = this.tileCount = 20;
+    this.velocityX = this.velocityY = 0;
+
+    // Oyun döngümüz çalışmaya başlıyor.
+    // Her saniyede 15 kez çalışacak, yani 15 FPS olacak.
+    // Üç boyutlu çok daha büyük oyunlar genelde 60 FPS üzerinde çalışıyor.
+    this.timer = setInterval(this.loop.bind(this), 1000 / 10);
+  }
+
+  reset() {
+    // Oyun göngüsünü durdur:
+    clearInterval(this.timer);
+    
+    // Oyun ile alakalı detayları en baştaki haline geri döndür:
+    this.init();
+  }
+
+  // Oyun döngümüz
+  loop() {
+    // Matematiksel hesaplamaları yap:
+    this.update();
+    
+    // Sonrasında ekrana çizimi gerçekleştir
+    this.draw();
+  }
+
+  update() {
+    // Yılanın başını X ve Y koordinat düzleminde gittiği yöne hareket ettir
+    this.positionX += this.velocityX;
+    this.positionY += this.velocityY;
+
+    // Yılan sağ, sol, üst ya da alt kenarlara değdi mi?
+    // Değdiyse ekranın diğer tarafından devam ettir
+    if (this.positionX < 0) {
+      this.positionX = this.tileCount - 1;
+    } else if (this.positionY < 0) {
+      this.positionY = this.tileCount - 1;
+    } else if (this.positionX > this.tileCount - 1) {
+      this.positionX = 0;
+    } else if (this.positionY > this.tileCount - 1) {
+      this.positionY = 0;
+    }
+
+    // Yılan kendi üstüne bastı mı?
+    this.trail.forEach(t => {
+      if (this.positionX === t.positionX && this.positionY === t.positionY) {
+        // Bastıysa game over olduk, oyunu resetle:
+        this.reset();
+      }
+    });
+
+    // Yılanın başını yılanın herbir karesini hafızada tuttuğumuz diziye koy
+    this.trail.push({positionX: this.positionX, positionY: this.positionY});
+
+    // Yılanın başını hareket ettirdik, şimdi kuyruktan kırpmamız gerekiyor
+    while (this.trail.length > this.tailSize) {
+      this.trail.shift();
+    }
+
+    // Yılan elma yedi mi?
+    if (this.appleX === this.positionX && this.appleY === this.positionY) {
+      // Yediyse yılanın boyutu uzat:
+      this.tailSize++;
+      
+      // Ekrana yeni bir elma koymak lazım.
+      // Rasgele X ve Y koordinatı üretip oraya elmayı atalım:
+      this.appleX = Math.floor(Math.random() * this.tileCount);
+      this.appleY = Math.floor(Math.random() * this.tileCount);
+    }
+  }
+
+  // Ekrana çizim gerçekleştiriyor:
+  draw() {
+    // İlk olarak siyah arkaplanı çiziyoruz
+    this.context.fillStyle = 'black';
+    this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+    // Skoru ekranın sol üst köşesine yazdıralım
+    this.context.fillStyle = 'white';
+    this.context.font = '20px Arial';
+    this.context.fillText(this.tailSize - 5, 20, 40);
+
+    // Yılanın herbir karesini sırayla ekrana çiziyoruz
+    this.context.fillStyle = 'yellow';
+    this.trail.forEach(t => {
+      this.context.fillRect(t.positionX * this.gridSize, t.positionY * this.gridSize, this.gridSize - 5, this.gridSize - 5);
+    });
+
+    // Son olarak elmayı ekrana çizdirelim:
+    this.context.fillStyle = 'pink';
+    this.context.fillRect(this.appleX * this.gridSize, this.appleY * this.gridSize, this.gridSize - 5, this.gridSize - 5);
+    return tailSize;
+    
+  }
+
+  // Kullanıcı websayfasındayken bir tuşa bastığında çağrılıyor:
+  onKeyPress(e) {
+    // Kullanıcı sol oka bastı, yılan sağa gitmiyorsa yılanı sola döndür
+    if (e.keyCode === 37 && this.velocityX !== 1) {
+      this.velocityX = -1;
+      this.velocityY = 0;
+    }
+    
+    // Kullanıcı yukarı oka bastı, yılan aşağı gitmiyorsa yılanı yukarı döndür
+    else if (e.keyCode === 38 && this.velocityY !== 1) {
+      this.velocityX = 0;
+      this.velocityY = -1;
+    }
+    
+    // Kullanıcı sağ oka bastı, yılan sola gitmiyorsa yılanı sağa döndür
+    else if (e.keyCode === 39 && this.velocityX !== -1) {
+      this.velocityX = 1;
+      this.velocityY = 0;
+    }
+    
+    // Kullanıcı aşağı oka bastı, yılan yukarı gitmiyorsa yılanı aşağı döndür
+    if (e.keyCode === 40 && this.velocityY !== -1) {
+      this.velocityX = 0
+      this.velocityY = 1;
+    }
+  }
+}
+
+// Yeni oyun oluştur:
+const game = new SnakeGame();
+  
+// Sayfa yüklendiğinde oyunu oynanabilir hale getir:
+window.onload = () => game.init();
+</script>
 
 
   </div>
     <div id="oyunsagalan">
+
+      <h1>
+        
+        {{ this.tailSize }}
+        
+      </h1>
 
     </div>
 
