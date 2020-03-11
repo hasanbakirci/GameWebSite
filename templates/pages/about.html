@@ -1,11 +1,142 @@
-{%  extends 'layout.html' %}
+{% load static %}
+<style>
+    #slider-wrapper{
+        border: 0ch;
+        margin-top: 0px;
+        padding-top: 0px;
+        position: absolute;
+        width:830px;
+        height:470px;
+        overflow: hidden;
+        
+      }
+      .img-bir, .img-iki, .img-uc, .img-dort,.img-bes{
+        margin-top: 0px;
+        position: absolute;
+        width:830px;
+        height:470px;
+      }
+      .img-bir{left: 0px;}
+      .img-iki{left: 830px;}
+      .img-uc{left: 1660px;}
+      .img-dort{left: 2490px;}
+      .img-bes{left: 3320px;}
+      #slider-wrapper > .slider{
+        position: absolute;
+        left:0px;
+        margin-top: 0px;
+        width: 3320px;
+        height: 470px;
+        -webkit-animation-duration: 15s;
+        -webkit-animation-name: sliders;
+        -webkit-animation-iteration-count:infinite;
+        -moz-animation-duration: 15s;
+        -moz-animation-name: sliders;
+        -moz-animation-iteration-count:infinite;
+        -ms-animation-duration: 15s;
+        -ms-animation-name: sliders;
+        -ms-animation-iteration-count:infinite;
+        animation-duration: 15s;
+        animation-iteration-count:infinite;
+      
+      }
+      #slider-wrapper > .slider:hover{
+        -webkit-animation-play-state:paused;
+        }
+        #slider-wrapper > .slider > a > span{
+            position:absolute;
+            background:#333;
+            color:white;
+            left:0;
+            top:80%;
+            padding:8px 22px;
+            display:table;
+          }
+          #slider-wrapper a{
+             font-size:18px;
+             font-family:Arial;
+          }
+          @-webkit-keyframes sliders{
+            0% {left:0px;}
+            10% {left:0px;}
+            20% {left:-830px;}
+            30% {left:-830px;}
+            40% {left:-1660px;}
+            50% {left:-1660px;}
+            60% {left:-2490px;}
+            70% {left:-2490px;}
+            80% {left:-3320px;}
+            90% {left:-3320px;}
+          }
+          @-moz-keyframes sliders{
+            0% {left:0px;}
+            10% {left:0px;}
+            20% {left:-830px;}
+            30% {left:-830px;}
+            40% {left:-1660px;}
+            50% {left:-1660px;}
+            60% {left:-2490px;}
+            70% {left:-2490px;}
+            80% {left:-3320px;}
+            90% {left:-3320px;}
+          }
+          @-ms-keyframes sliders {
+            0% {left:0px;}
+            10% {left:0px;}
+            20% {left:-830px;}
+            30% {left:-830px;}
+            40% {left:-1660px;}
+            50% {left:-1660px;}
+            60% {left:-2490px;}
+            70% {left:-2490px;}
+            80% {left:-3320px;}
+            90% {left:-3320px;}
+          }
+          @keyframes sliders{
+            0% {left:0px;}
+            10% {left:0px;}
+            20% {left:-830px;}
+            30% {left:-830px;}
+            40% {left:-1660px;}
+            50% {left:-1660px;}
+            60% {left:-2490px;}
+            70% {left:-2490px;}
+            80% {left:-3320px;}
+            90% {left:-3320px;}
+          }
+    
+ 
+
+</style>
 
 
-            {% block content %}
+<div id="slider-wrapper">
+    <div class="slider">
+        <a class="img-bir">
+            <img src="{% static 'img/1.jpg' %}">
+            <span>1</span>
+         </a>
+        <a class="img-iki">
+                <img src="{% static 'img/2.jpg' %}">
+            <span>2</span>
+        </a>
+        <a class="img-uc">
+            <img src="{% static 'img/3.jpg' %}">
+            <span>3</span>
+        </a>
+        <a class="img-dort">
+            <img src="{% static 'img/1.jpg' %}">
+            <span>4</span>
+        </a>
+        <a class="img-bes">
+            <img src="{% static 'img/3.jpg' %}">
+            <span>5</span>
+        </a>
+     </div>
+</div>
 
-<h1>  denemeeee  2222222222222 </h1>
+
+            
 
 
-
-
-            {% endblock %}
+         

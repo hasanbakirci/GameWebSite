@@ -13,3 +13,7 @@ def index(request):
 
 def about(request):
     return render(request, 'pages/about.html')
+
+
+def registerindex(request):
+    return render(request, 'pages/registerindex.html')

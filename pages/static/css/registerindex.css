@@ -1,0 +1,17 @@
+.kutu{
+    background: url('/static/img/background1.jpg');
+    height: 720px;
+    width: 1080px;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    background-color: aqua;
+    
+    
+    
+}
+.registeralan{
+    margin: auto;
+    width: 500px;
+}

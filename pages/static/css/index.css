@@ -18,7 +18,9 @@
     height: 720px;
     width: 830px;
     position: absolute;
-    margin-left: 0;
+    margin-left: 0px;
+    margin-top: 0px;
+    padding-top: 0px;
     
     
     
@@ -29,6 +31,10 @@
     height: 470px;
     width: 830px;
     position: absolute;
+    margin-top: 0px;
+    padding-top: 0px;
+    
+    
 }
 .duyurualan{
     background-color: khaki;

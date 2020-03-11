@@ -142,12 +142,14 @@ class SnakeGame {
     this.context.fillStyle = 'white';
     this.context.font = '20px Arial';
     this.context.fillText(this.tailSize - 5, 20, 40);
+    document.getElementById("yazdir").innerHTML=this.tailSize-5;
 
     // Yılanın herbir karesini sırayla ekrana çiziyoruz
     this.context.fillStyle = 'yellow';
     this.trail.forEach(t => {
       this.context.fillRect(t.positionX * this.gridSize, t.positionY * this.gridSize, this.gridSize - 5, this.gridSize - 5);
     });
+    
 
     // Son olarak elmayı ekrana çizdirelim:
     this.context.fillStyle = 'pink';
@@ -196,8 +198,7 @@ window.onload = () => game.init();
     <div id="oyunsagalan">
 
       <h1>
-        
-        {{ this.tailSize }}
+        <p style="background-color: aliceblue;" id="yazdir"></p>
         
       </h1>
 
