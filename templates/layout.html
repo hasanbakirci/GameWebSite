@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{% static 'css/registerindex.css' %}" >
     
     
+    
 
     
 
@@ -22,12 +23,12 @@
     <div id= "kutu"class="topnav">
         <a  href="index">Anasayfa</a>
         <a  href="game1">Oyunlar</a>
-        <a href="ranking">Sıralama</a>
         <a href="registerindex">Kayıt ol</a>
     </div>
 
 </head>
 <body>
+            {%  include 'partials/_alert.html' %}
     
             {% block content %}
 

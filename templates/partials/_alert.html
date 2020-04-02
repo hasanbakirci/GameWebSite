@@ -1,0 +1,42 @@
+{% if messages %}
+<div class="hata">
+<ul class="messages">
+    {% for message in messages %}
+    <p {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+    {% endfor %}
+</ul>
+
+</div>
+
+{% endif %}
+
+<style>
+
+    .hata{
+        width: 720px;
+        margin: auto;
+    }
+    .success{
+        background: green;
+        text-align: center;
+        margin: auto;
+        
+
+    }
+
+    .error{
+        background: red;
+        text-align: center;
+        margin: auto;
+        
+
+    }
+
+    .warning{
+        background:orange;
+        text-align: center;
+        margin: auto;
+        
+
+    }
+</style>
