@@ -17,3 +17,6 @@ def about(request):
 
 def registerindex(request):
     return render(request, 'pages/registerindex.html')
+
+def gamepage(request):
+    return render(request, 'pages/gamepage.html')

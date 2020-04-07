@@ -1,0 +1,53 @@
+
+.bolge{
+    background: url('/static/img/background1.jpg');
+    height: 600px;
+    width: 1080px;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+   /* display: flex;  */
+    
+    
+    
+}
+
+.bir{
+    
+    height: 80px;
+    width: 400px;
+    position: relative;
+    margin: auto;
+    margin-top: 0px;
+    padding-top: 0px;
+    
+    
+    
+    
+}
+.iki{
+    
+    height: 80px;
+    width: 400px;
+    position: relative;
+    margin: auto;
+    margin-top: 3px;
+    padding-top: 0px;
+    
+    
+    
+    
+}
+.uc{
+    background-color: rgb(13, 13, 14);
+    height: 400px;
+    width: 400px;
+    position: relative;
+    margin: auto;
+    margin-top: 3px;
+    padding-top: 0px;
+    
+    
+    
+    
+}

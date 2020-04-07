@@ -1,0 +1,84 @@
+{%  extends 'layout.html' %}
+
+
+
+{% block content %}
+
+<style>
+  table{
+    width: 400px;
+    margin-top: 10px;
+    color: honeydew;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:large;
+    text-align: center;
+
+  }
+  button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 18px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 30%;
+  } 
+  
+</style>
+
+
+
+
+<section class="gamealan"> 
+  <div class="bolge">
+    <div class="bir">
+        {% if user.is_authenticated %}
+
+    <form action="{% url 'logout' %}" method="POST">
+      {% csrf_token %}
+      <div class="container">
+        <table style="color: honeydew;">
+          <tr>
+            <td>Merhaba {{user.username}}</td>
+          </tr>
+          <tr>
+            <td>En yüksek puanınız: BUUUU</td>
+          </tr>
+          <tr>
+            <td><button type="submit1">Çıkış Yap</button></td>
+          </tr>
+        </table>
+   
+     
+  </form>
+  
+{% else %}
+
+
+<table>
+  <tr>
+    <td>Sıralamada kendini görmek için;</td>
+  </tr>
+  <tr>
+    <td><button onclick="window.location.href = 'index';">Giriş Yap !</button></td>
+   
+  </tr>
+  
+</table>
+
+
+{% endif %}
+    </div>
+    
+    <div class="uc">
+        {% include 'game/game1.html' %}
+    </div>
+
+  </div>
+</section>
+      
+
+
+
+
+{% endblock %}
