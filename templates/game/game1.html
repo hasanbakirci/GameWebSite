@@ -99,6 +99,7 @@
   function loop() {
     puanYaz(snake.maxCells-6,10,20,'#fff');
     startBtn.style.display = 'none';
+
     
     requestAnimationFrame(loop);
     document.getElementById("puan").innerHTML =snake.maxCells-6;
@@ -211,16 +212,7 @@
     }
   });
   
-  $(document).on('gonder','#gonder', function(e){
-    e.preventDefault();
-    $.ajax({
-      type:'POST',
-      url:'game1',
-      data:{
-        puan: $('111').val(),
-      }
-    })
-  })
+  
   
 		
 	
