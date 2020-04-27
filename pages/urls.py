@@ -7,4 +7,7 @@ urlpatterns = [
     path('about', views.about, name='about' ),
     path('gamepage', views.gamepage, name='gamepage' ),
     path('registerindex', views.registerindex, name='registerindex' ),
+    
+    
+   
 ]

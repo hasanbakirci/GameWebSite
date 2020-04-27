@@ -25,15 +25,18 @@
       
                     <div class="duyurualan">
 
-                        <p >
+                        <p class="duyurualanp">
                             <h2>
                                 Duyurular:<br>
                             </h2>
                             <h3>
                                 <ul>
-                                    <li>Üye giriş, çıkış ve kayıt sayfaları artık çalışır durumda</li>
-                                    <li>Sliderlara resimler eklendi</li>
-                                    <li>Yapılan işlemlerde kullanıcı bilgilendirme bölümleri eklendi</li>
+                                    <li>Anasayfa Tasarımı tamamlandı</li>
+                                    <li>Üyelik Ekranı Tasarımı tamamlandı  </li>
+                                    <li>Slider Tasarımı tamamlandı </li>
+                                    <li>Veri Tabanı Tasarımı tamamlandı </li>
+                                    <li>Oyunların  (En az bir oyun)Eklenmesi tamamlandı </li>
+                                    <li>Css ile Sayfaların Düzenlenmesi tamamlandı </li>
                                  </ul>
                             </h3>
                             
@@ -56,8 +59,133 @@
                     
 
                     <div class="siralamaalan">
+
+                                              
+
+
+                       
+
+
+                        
+<style>
+    table, td, td {  
+        border: 1px solid rgb(134, 131, 131);
+        text-align: left;
+        font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        text-align: center;
+        
+      }
+      
+      table {
+        border:none;
+        
+        width: 100%;
+      }
+      
+       td {
+        border:  #636665;
+        padding: 10px;
+      }
+      th{
+        
+        padding: 10px; 
+      }
+
+      h3{
+          margin: auto;
+      }
+      form {
+          
+          border: 2px solid #636665;
+        }
+      
+        button {
+          background-color: #4CAF50;
+          color: white;
+          padding: 10px 18px;
+          margin: 8px 0;
+          border: none;
+          cursor: pointer;
+          width: 100%;
+        }
+
+    
+</style>
+
+
+
+
+
+
+  
+    
+    
+    <form>
+
+
+   
+    
+    
+    
+    <table >
+        <tr><td colspan="2"><h3>SIRALAMA</h3></td></tr>
+        <tr>
+            <td> Kullanıcı Adı</td>
+            <td> Puan</td>
+        </tr>
+        {% for obj in object_list %}
+       <tr>
+          <td>{{ obj.username }} </td>
+          <td>{{ obj.last_name }} </td>
+       </tr>
+        {% endfor %}
+    </table>
+
+
+
+
+ </form>
+
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                     
-                        {% include 'user/ranking_main.html' %}
+                       
                      </div>
                                 
 

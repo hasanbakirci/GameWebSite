@@ -1,7 +1,7 @@
 
 
 .alan{
-    background-image: url("{% static 'img/background.jpg' %}");
+    
     height: 720px;
     width: 1080px;
     margin: auto;
@@ -37,14 +37,15 @@
     
 }
 .duyurualan{
-    background-color: khaki;
+    background-color:#4cd137;
     height: 240px;
     width: 830px;
     margin-top: 480px;
     position: absolute;
+    
 }
 .sagalan{
-    background-color: rgb(145, 194, 88);
+    background-color:#4cd137;
     height:720px;
     width: 240px;
     position: absolute;
@@ -69,16 +70,23 @@
     margin-top: 20px;
 }
 
-
-
- 
-
-
-
-
-
-
+.duyurualanp{
+    font: 15px Arial, sans-serif;
+}
+h2{
+    padding-left: 10px;
+}
 
 
 
-  
+
+
+
+
+
+
+
+
+
+
+

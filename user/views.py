@@ -57,5 +57,6 @@ def logout(request):
 
 
 def ranking_main(request):
+ 
 
   return render(request, 'user/ranking_main.html')

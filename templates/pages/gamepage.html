@@ -42,13 +42,13 @@
             <td>Merhaba {{user.username}}</td>
           </tr>
           <tr>
-            <td>En yüksek puanınız: BUUUU</td>
+            <td>En yüksek puanınız: {{user.last_name}}</td>
           </tr>
           <tr>
             <td><button type="submit1">Çıkış Yap</button></td>
           </tr>
         </table>
-   
+        
      
   </form>
   
@@ -69,10 +69,10 @@
 
 {% endif %}
     </div>
-    
     <div class="uc">
-        {% include 'game/game1.html' %}
-    </div>
+      {% include 'game/game1.html' %}
+  </div>
+    
 
   </div>
 </section>
